@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import {reactive, ref, toRefs} from "vue";
 import type {FormRules} from "element-plus";
+import Axios from 'axios'
+
 
 // 数据定义
 const state = reactive({
@@ -40,7 +42,9 @@ let ruleFormRef = ref()
 const login = () => {
   ruleFormRef.value.validate().then(()=> {
     console.log('校验通过')
-  }).catch((e)=> {
+    const response = Axios.get('127.0.0.1:7201/test/1')
+    console.log(response)
+  }).catch(()=> {
     console.log('校验不通过')
   })
 }
